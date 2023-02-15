@@ -25,9 +25,9 @@ exports.findByUsername = (username) => User.findOne({username});
 
 exports.findByEmail = (email) => User.findOne({email});
 
-exports.login = async (email, password) => {
+exports.login = async (username, password) => {
 
-    const user = await this.findByEmail(email);
+    const user = await this.findByUsername(username);
 
     if(!user){
 
@@ -41,7 +41,7 @@ exports.login = async (email, password) => {
         throw "User or password don`t match!"
     }
 
-    const payload = {_id: user._id, user: user.username, email: user.email}
+    const payload = {_id: user._id, user: user.username}
     const token = await jwt.sign(payload, config.SECRET, {expiresIn: '2h'})
     return token;
 }
