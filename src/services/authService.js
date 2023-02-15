@@ -3,7 +3,7 @@ const jwt = require('../lib/jsonwebtoken');
 const config = require('../config')
 
 
-exports.register = async (username, email, password, repass) => {
+exports.register = async (username, password, rePassword) => {
     
    const existingUser = await this.findByUsername(username);
 
@@ -12,13 +12,13 @@ exports.register = async (username, email, password, repass) => {
         throw "This user exists!";
     }
 
-    if(password !== repass){
+    if(password !== rePassword){
 
         throw "Password missmatch!";
     }
-    await User.create({username, email, password})
+    await User.create({username, password})
     
-    return this.login(email, password);
+    return this.login(username, password);
 };
 
 exports.findByUsername = (username) => User.findOne({username});

@@ -27,10 +27,10 @@ exports.getRegister = (req, res) =>{
 
 exports.postRegister = async (req, res) =>{
 
-    const {username, email, password, repass} = req.body;
+    const {username, password, rePassword} = req.body;
 
     try{
-        const token = await authService.register(username, email, password, repass);
+        const token = await authService.register(username, password, rePassword);
         res.cookie('auth', token);
     }
     catch(err){
