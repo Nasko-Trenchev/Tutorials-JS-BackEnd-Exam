@@ -22,3 +22,11 @@ exports.authentication = async (req, res, next) =>{
     }
     next();
 }
+
+exports.isAuthenticatedHome = (req, res, next) =>{
+
+    if(req.isAuthenticated){
+        req.logged = true;
+    }
+    next()
+}
