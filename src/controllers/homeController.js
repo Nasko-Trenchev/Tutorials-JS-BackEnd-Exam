@@ -8,9 +8,19 @@ exports.getHomePage = async (req, res) => {
 
         return b.createdAt - a.createdAt;
     })
+
     if(req.logged){
 
-       return res.render("user-home", {courses})
+     const {search} = req.query;
+     
+     if(search){
+
+      const results = courseService.searching(search);
+
+      return res.render("user-home", {results})
+     }
+     return res.render("user-home", {courses})
     }
+
     res.render('guest-home', {courses});
 }

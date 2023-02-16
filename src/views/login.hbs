@@ -1,4 +1,10 @@
 
+            {{#if error}}
+            <section class="notifications">
+            <p class="notification-message">{{error}}</p>
+             </section> 
+             {{/if}} 
+            
             <form class="text-center border border-light p-5" method="POST">
                 <div class="form-group">
                     <label for="username">Username</label>

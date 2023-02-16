@@ -15,4 +15,10 @@ exports.enroll = async (courseID, userId) => {
 
 exports.deleteCourse = (id) => Course.findByIdAndDelete(id);
 
-exports.editCourse = (id, data) => Course.findByIdAndUpdate(id, data)
+exports.editCourse = (id, data) => Course.findByIdAndUpdate(id, data);
+
+exports.searching = (search) => {
+    const query = {};
+    query.title = new RegExp(search, 'i');
+    return Course.find(query).sort({ createdAt: 1 }).lean()
+}

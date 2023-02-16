@@ -5,16 +5,19 @@ const CourseShema = new mongoose.Schema({
     title: {
         type: String,
         required: true,
-        unique: true
+        unique: true,
+        minLength: 4
     },
     description: {
         type: String,
         required: true,
-        maxLength: 50
+        maxLength: 50,
+        minLength: 20
     },
     imageUrl: {
         type: String,
         required: true,
+        match: [/^https?:\/\//, "Invalid URL"]
     },
     duration:{
         type: String,

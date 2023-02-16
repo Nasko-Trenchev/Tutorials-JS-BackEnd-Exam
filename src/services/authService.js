@@ -5,17 +5,6 @@ const config = require('../config')
 
 exports.register = async (username, password, rePassword) => {
     
-   const existingUser = await this.findByUsername(username);
-
-   if(existingUser){
-
-        throw "This user exists!";
-    }
-
-    if(password !== rePassword){
-
-        throw "Password missmatch!";
-    }
     await User.create({username, password})
     
     return this.login(username, password);
@@ -28,18 +17,6 @@ exports.findByEmail = (email) => User.findOne({email});
 exports.login = async (username, password) => {
 
     const user = await this.findByUsername(username);
-
-    if(!user){
-
-        throw "User or password don`t match!"
-    }
-
-    const isValid = await user.validatePassword(password);
-
-    if(!isValid){
-
-        throw "User or password don`t match!"
-    }
 
     const payload = {_id: user._id, user: user.username}
     const token = await jwt.sign(payload, config.SECRET, {expiresIn: '2h'})

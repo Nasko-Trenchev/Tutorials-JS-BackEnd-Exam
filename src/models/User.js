@@ -5,11 +5,15 @@ const userShema = new mongoose.Schema({
 
     username: {
         type: String,
-        required: true
+        required: true,
+        minLength: 5,
+        match: [/^[\w-]+$/, "Username should be only letters and digits"],
     },
     password: {
         type: String,
-        required: true
+        required: true,
+        minLength: 5,
+        match: [/^[\w-]+$/, "Password should be only letters and digits"],
     }
 })
 
