@@ -24,6 +24,10 @@ const CourseShema = new mongoose.Schema({
         type: Date,
         required: true,
     },
+    owner: {
+        type: mongoose.Types.ObjectId,
+        ref: 'User'
+    },
     usersEnrolled: [{
         type: mongoose.Types.ObjectId,
         ref: 'User'

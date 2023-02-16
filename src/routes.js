@@ -19,6 +19,9 @@ router.post('/create', courseController.postCreatePage);
 
 router.get('/details/:id', courseController.getDetailPage);
 router.get('/enroll/:id', courseController.enrollCourse);
+router.get('/delete/:id', courseController.deleteCourse);
+router.get('/edit/:id', courseController.getEditPage);
+router.post('/edit/:id', courseController.postEditPage);
 
 //TODO: Routes
 
