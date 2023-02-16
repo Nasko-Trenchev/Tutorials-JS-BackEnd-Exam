@@ -12,7 +12,7 @@ const CourseShema = new mongoose.Schema({
         required: true,
         maxLength: 50
     },
-    imgUrl: {
+    imageUrl: {
         type: String,
         required: true,
     },
@@ -21,7 +21,7 @@ const CourseShema = new mongoose.Schema({
         required: true,
     },
     createdAt: {
-        type: String,
+        type: Date,
         required: true,
     },
     usersEnrolled: [{

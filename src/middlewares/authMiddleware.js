@@ -13,7 +13,7 @@ exports.authentication = async (req, res, next) =>{
             req.isAuthenticated = true;
             res.locals.isAuthenticated = true;
             res.locals.email = decodedToken.email;
-            res.locals.username = decodedToken.username;
+            res.locals.username = decodedToken.user;
             }
             catch(err){
                 res.clearCookie('auth');
@@ -29,4 +29,13 @@ exports.isAuthenticatedHome = (req, res, next) =>{
         req.logged = true;
     }
     next()
+}
+
+exports.isAuthenticated = (req, res, next) =>{
+
+    if(!req.isAuthenticated){
+
+        res.redirect('/login');
+    }
+    next();
 }
